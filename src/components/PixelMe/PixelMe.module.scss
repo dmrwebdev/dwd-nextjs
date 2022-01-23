@@ -1,0 +1,27 @@
+/* .img_container {
+  position: relative;
+  z-index: 0;
+} */
+
+/* .img_container img {
+  margin-left: auto;
+  //margin-right: 1rem;
+}
+ */
+.pixel_img_anim {
+  animation: slide-up 1.5s 1s forwards;
+  transform: rotate(45deg) translateY(100%);
+}
+
+@keyframes slide-up {
+  0% {
+  }
+  100% {
+    transform: rotate(45deg) translate(-15%, 10%);
+  }
+}
+
+/* .hidden {
+  opacity: 0;
+}
+ */
