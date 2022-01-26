@@ -9,7 +9,7 @@
 }
  */
 .pixel_img_anim {
-  animation: slide-up 1.5s 1s forwards;
+  animation: slide-up 1s 1s forwards;
   transform: rotate(45deg) translateY(100%);
 }
 
@@ -18,6 +18,20 @@
   }
   100% {
     transform: rotate(45deg) translate(-15%, 10%);
+  }
+}
+
+.pixel_img_anim_exit {
+  animation: slide-down 0.8s forwards;
+  transform: rotate(45deg);
+}
+
+@keyframes slide-down {
+  0% {
+    transform: rotate(45deg) translate(-15%, 10%);
+  }
+  100% {
+    transform: rotate(45deg) translate(-15%, 100%);
   }
 }
 
