@@ -114,3 +114,17 @@
     flex-direction: column;
   }
 }
+
+.intro_bg {
+  background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(0, 0, 0, 0.45) 63%,
+      rgba(0, 0, 0, 0.1) 80%
+    ),
+    url("../assets/welcome-bg.jpg") bottom/cover no-repeat fixed;
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+}
+
