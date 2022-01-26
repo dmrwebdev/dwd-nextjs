@@ -7,7 +7,7 @@ import resume from "../../assets/social/resume.svg";
 
 export default function Contactbar({ className }) {
   const contactTile = (contact) => (
-    <Link href={contact.link}>
+    <Link href={contact.link} key={contact.alt}>
       <a className="brightness-[4] w-[32px] md:w-[45px] ">
         <Image
           src={contact.image}
