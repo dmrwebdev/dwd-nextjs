@@ -6,17 +6,34 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "./Projects.module.scss";
 import { useState } from "react";
+import useWindowDimensions from "../../hooks/useWindowDimensions";
 
 export default function Projects() {
-  return (
-    <Section headerTitle="Projects" className="px-0 py-4 ">
-      <div className="mx-auto flex flex-wrap justify-center space-y-4">
+  const { width } = useWindowDimensions();
+
+  const desktopLayout = (
+    <section className="px-0 py-4 ">
+      <div>
+        <h1>A few of my projects</h1>
+        <p>
+          Lorem ipsum ipsum ipsume lsosdflkjds lljdf ldskjf lskjfl kjsdlf
+          jsl;dfjlsdjk flsdk
+        </p>
+      </div>
+      <div className="mx-auto flex flex-wrap justify-center ">
         {projectsList.map((project) => (
           <ProjectTile project={project} key={project.title} />
         ))}
       </div>
-    </Section>
+    </section>
   );
+  const mobileLayout = <div>Poop</div>;
+
+  if (width < 800) {
+    return mobileLayout;
+  }
+
+  return desktopLayout;
 }
 
 function ProjectTile({ project }) {
@@ -29,22 +46,36 @@ function ProjectTile({ project }) {
 
   return (
     <div
-      className="w-full bg-[#182a40] rounded" /* max-w-[725px] m-5 */
+      className="w-full max-w-[725px] bg-[#182a40] rounded  m-5 "
       key={project.projectURL}
     >
       {/*  Project Links */}
-      <div className="flex justify-between items-center py-3 px-4 bg-[#1098F7] ">
+      <div
+        className={`${styles.projectTile_titlebar} flex justify-between items-center py-3 px-4 `}
+      >
         {/*  justify-end rounded-t space-x-8  */}
         <h3 className="text-white text-xl">{project.title}</h3>
         <div className="flex space-x-4">
           <Link href={project.projectURL}>
             <a className="flex items-center">
-              <Image src={linkIcon} alt="Project Link" height={40} width={40} />
+              <Image
+                src={linkIcon}
+                alt="Project Link"
+                height={40}
+                width={40}
+                className="drop-shadow-lg"
+              />
             </a>
           </Link>
           <Link href={project.githubURL}>
-            <a className="flex items-center">
-              <Image src={githubIcon} alt="Github Link" />
+            <a className="flex items-center p-2">
+              <Image
+                src={githubIcon}
+                alt="Github Link"
+                className="drop-shadow-lg"
+                height={40}
+                width={40}
+              />
             </a>
           </Link>
         </div>
@@ -60,7 +91,7 @@ function ProjectTile({ project }) {
           <div
             className={`${styles.preview_img} ${
               imageFlipped ? styles.test : ""
-            } w-full h-[250px] relative z-10`}
+            } w-full h-[300px] relative z-10`}
           >
             <Image
               src={project.previewImg}
@@ -68,6 +99,7 @@ function ProjectTile({ project }) {
               layout="fill"
               objectFit="cover"
               objectPosition="center"
+              className=""
             />
           </div>
           <div className="h-full w-full absolute z-0 flex items-center justify-center p-4 text-center">

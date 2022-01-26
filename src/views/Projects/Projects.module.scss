@@ -13,3 +13,25 @@
   transform: perspective(400px) rotateX(-90deg);
   /*   perspective: 200px; */
 }
+
+.projectTile_titlebar {
+  background: hsla(189, 92%, 69%, 1);
+
+  background: linear-gradient(
+    225deg,
+    hsla(189, 92%, 69%, 1) 0%,
+    hsla(205, 94%, 52%, 1) 41%
+  );
+
+  background: -moz-linear-gradient(
+    225deg,
+    hsla(189, 92%, 69%, 1) 0%,
+    hsla(205, 94%, 52%, 1) 41%
+  );
+
+  background: -webkit-linear-gradient(
+    225deg,
+    hsla(189, 92%, 69%, 1) 0%,
+    hsla(205, 94%, 52%, 1) 41%
+  );
+}
