@@ -16,8 +16,11 @@
     "postcss": "^8.4.5",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-textarea-autosize": "^8.3.3",
+    "react-tsparticles": "^1.39.0",
     "sass": "^1.49.0",
     "sharp": "^0.29.3",
+    "simplex-noise": "^3.0.1",
     "tailwindcss": "^3.0.15"
   },
   "devDependencies": {
