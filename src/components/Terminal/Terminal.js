@@ -2,115 +2,82 @@ import { useState, useEffect, useRef } from "react";
 
 import styles from "./Terminal.module.scss";
 import TerminalTitleBar from "./TerminalTitleBar";
-import Hello from "../Hello/Hello";
 import Typewriter from "./Typewriter/Typewriter";
+import terminalLines from "../../refs/terminalLines";
+import TerminalIntro from "./TerminalIntro";
+import Projects from "../../views/Projects/Projects";
+import AboutMe from "../../views/AboutMe/AboutMe";
+import Technologies from "../../views/Technologies/Technologies";
 
 export default function Terminal({
-  // Handle animation over
-  handleTypeAnimOver,
-  terminalDisplayOver,
-  setTerminalDisplayOver,
-  // Type writer text data
-  typeWriterText,
+  className,
+  handleAnimOver,
+  terminalAnimStart,
+  terminalAnimOver,
+  children,
 }) {
-  const [carriageReturn, setCarriageReturn] = useState([]);
+  const [shellLocation, setShellLocation] = useState("~");
 
-  const [locationText, setlocationText] = useState("");
-  // Lines individually added to terminal
-  const [savedLines, setSavedLines] = useState([]);
+  const terminalLocations = [
+    {
+      location: "~",
+      component: <div>home</div>,
+    },
+    {
+      location: "~/about",
+      component: <AboutMe />,
+    },
+    {
+      location: "~/projects",
+      component: <Projects />,
+    },
+    {
+      location: "~/tech",
+      component: <Technologies />,
+    },
+  ];
 
-  const terminalContentRef = useRef(null);
-
-  useEffect(() => {
-    //Prevent overwriting last cursor animation
-    if (mappedText.length > carriageReturn.length) {
-      setSavedLines(mappedText);
-    }
-
-    if (carriageReturn.length === typeWriterText.length) {
-      handleTypeAnimOver(true);
-    }
-  }, [carriageReturn]);
-
-  function handleTextState(i) {
-    /* console.log(i); */
-    setTimeout(() => {
-      setCarriageReturn((prevState) => [...prevState, i]);
-    }, randomNumber(800, 1200));
+  function handleChangeLocation(location) {
+    setShellLocation(location);
   }
 
-  const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+  const validLocations = ["about", "projects", "tech", "certs"];
 
-  let mappedText = typeWriterText.map((elem, i) => {
-    console.log(elem);
-    if (i <= carriageReturn.length) {
-      if (elem[3]) {
-        console.log(i);
-
-        /*
-         */
-
-        if (i === carriageReturn.length) {
-          /* const test = async () => {
-            await delay(1000); */
-          setCarriageReturn((prevState) => [...prevState, i]);
-          /* };
-          test(); */
-        }
-        return (
-          <div>
-            <div>
-              <div className="max-w-[600px] whitespace-pre-line">{elem[2]}</div>
-            </div>
-          </div>
-        );
-      } else {
-        return (
-          <div>
-            <div>
-              <span className="text-terminal-location">{elem[0]}</span>:
-              <span className="text-terminal-tilde">{elem[1]}</span>${" "}
-              <Typewriter
-                data={elem[2]}
-                handleTextState={handleTextState}
-                carriageReturn={carriageReturn}
-                speed={randomNumber(25, 50)}
-              />
-              {i === carriageReturn.length ? (
-                <span className={styles.cursor}>_</span>
-              ) : null}
-            </div>
-          </div>
-        );
-      }
+  function terminalContentSelect() {
+    if (terminalAnimStart && !terminalAnimOver) {
+      return (
+        <TerminalIntro
+          terminalAnimOver={terminalAnimOver}
+          handleAnimOver={handleAnimOver}
+        />
+      );
+    } else if (terminalAnimStart && terminalAnimOver) {
+      return terminalLocations.find(
+        (location) => location.location === shellLocation
+      ).component;
     }
-  });
-
-  // Keep container scrolled to bottom
-  useEffect(() => {
-    if (terminalContentRef.current) {
-      terminalContentRef.current.scrollTop =
-        terminalContentRef.current.scrollHeight;
-    }
-  }, [savedLines, terminalContentRef]);
+    console.log("I shouldn't fire");
+  }
 
   return (
     <div
-      className={`${styles.terminal_container} h-full w-full bg-terminal-black fixed z-30 drop-shadow-md`}
+      className={`${styles.terminal_container} relative w-full bg-terminal-black text-terminal-text  drop-shadow-md ${className}`}
     >
       <TerminalTitleBar
-        textData={typeWriterText}
-        carriageReturn={carriageReturn}
-        setlocationText={setlocationText}
-        locationText={locationText}
-        setTerminalDisplayOver={setTerminalDisplayOver}
+        textData={terminalLines}
+        carriageReturn={/* carriageReturn */ 0}
+        setLocationText={/* setlocationText */ () => null}
+        locationText={/* locationText */ "fuck"}
+        handleTypeAnimOver={handleAnimOver}
+        terminalLocations={terminalLocations}
+        handleChangeLocation={handleChangeLocation}
       />
-      <div
-        ref={terminalContentRef}
-        className={`${styles.terminal_content} text-[15px] p-4 overflow grow shrink basis-0 overflow-auto`}
-      >
-        <div>{terminalDisplayOver ? <Hello /> : savedLines}</div>
-      </div>
+      {/*  <div
+        className={`h-full w-full text-[15px] grow shrink relative`}
+        basis-0
+      > */}
+      {terminalContentSelect()}
+      {/*  </div> */}
     </div>
   );
 }
