@@ -34,7 +34,8 @@ import Image from "next/image";
 
 export default function Technologies() {
   return (
-    <Section headerTitle="Technologies and Services I Work With">
+    <section /* headerTitle="" */ className="relative">
+      <h1>Technologies and Services I Work With</h1>
       <div className="bg-white border rounded-xl drop-shadow-md overflow-hidden ">
         {Object.keys(sortedTechTiles).map((techKey) => (
           <TechPanel
@@ -46,7 +47,7 @@ export default function Technologies() {
           </TechPanel>
         ))}
       </div>
-    </Section>
+    </section>
   );
 }
 
