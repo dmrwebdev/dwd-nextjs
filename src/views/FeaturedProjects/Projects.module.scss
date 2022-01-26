@@ -1,0 +1,15 @@
+.preview_img {
+  /*   transform: perspective(500px) rotateY(35deg); */
+  background-color: black;
+  transform-origin: top;
+  transition: all 1s;
+  &:hover {
+    /*     opacity: 0.25; */
+    /*     transform: rotateY(0deg); */
+  }
+}
+
+.test {
+  transform: perspective(400px) rotateX(-90deg);
+  /*   perspective: 200px; */
+}
