@@ -42,14 +42,14 @@ export default function Navbar({ prevScrollPos, setPrevScrollPos }) {
       <Link href="/">
         <a>Home</a>
       </Link>
-      <Link href="/projects">
+      <Link href="/#projects">
         <a>Projects</a>
       </Link>
-      <Link href="/about-me">
+      <Link href="/#about">
         <a>About Me</a>
       </Link>
-      <Link href="/certificates">
-        <a>Certificates</a>
+      <Link href="/#tech">
+        <a>Tech and Certs</a>
       </Link>
       {/*       <Link href="/Derek_Robertson_Resume_2022.pdf">
         <a>Resume</a>
