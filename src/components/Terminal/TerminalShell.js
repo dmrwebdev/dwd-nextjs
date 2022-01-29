@@ -1,132 +1,128 @@
 import { useRef, useEffect, useState } from "react";
-import AboutMe from "../../views/AboutMe/AboutMe";
-import ContentEditable from "../ContentEditable/ContentEditable";
-import useWindowDimensions from "../../hooks/useWindowDimensions";
 import TextareaAutosize from "react-textarea-autosize";
-import Projects from "../../views/Projects/Projects";
-import Technologies from "../../views/Technologies/Technologies";
 
-export default function TerminalShell() {
+export default function TerminalShell({
+  currentDirectory,
+  handlChangeDirectory,
+  bashExperience,
+  setBashExperience,
+  findDirectory,
+  children,
+}) {
   const [savedCommands, setSavedCommands] = useState([]);
-  const [typedInput, setTypedInput] = useState("");
-  const [shellLocation, setShellLocation] = useState("~");
+  const [savedCommandIndex, setSavedCommandIndex] = useState(0);
+  const [currentCommand, setCurrentCommand] = useState("");
   const [loadedSection, setLoadedSection] = useState(null);
+  const [terminalMessage, setTerminalMessage] = useState(null);
 
   const locationRef = useRef(null);
   const textAreaRef = useRef(null);
 
-  const home = `Hello and welcome to my portfolio!
-    You can navigate around the termninal using these commands:
-
-    * cd
-    * cd projects
-    * cd aboutMe
-  
-    Please feel free to explore and check out some of my work!
-  `;
-
-  const validLocations = ["about", "projects", "tech", "certs"];
-
+  // Set current command view to null if section is changed
   useEffect(() => {
-    /*     const home = `Hello and welcome to my portfolio!
-    You can navigate around the termninal using these commands:
+    setCurrentCommand("");
+  }, [currentDirectory]);
 
-    -cd
-    -cd projects
-    -cd aboutMe
-  
-    Please feel free to explore and check out some of my work!
-  `; */
-    setLoadedSection(() => {
-      switch (shellLocation) {
-        /*       case "~":
-        return home; */
-        case "~/projects":
-          return <Projects />;
-        case "~/about":
-          return <AboutMe />;
-        case "~/projects":
-          return <Projects />;
-        case "~/tech":
-          return <Technologies />;
-        default:
-          return;
-      }
-    });
-  }, [shellLocation]);
-
-  const { width } = useWindowDimensions();
-
-  function handleCommand(command) {
+  function handleCommand() {
     // Change Directories
-    if (/cd .+/.test(command)) {
-      const location = command.split(" ")[1];
-      if (validLocations.indexOf(location) > -1) {
-        setShellLocation(`~/${location}`);
-      } else {
-        setShellLocation(`~`);
-      }
+    if (/cd.*/.test(currentCommand)) return handleCDCommand(currentCommand);
 
-      setSavedCommands([]);
-      return setTypedInput("");
-    }
+    const invalidCommand = (input) =>
+      setSavedCommands((prev) => [...prev, `${input}: command not found`]);
 
-    let commandOverride;
-
-    console.log(command);
-    switch (typedInput) {
+    switch (currentCommand) {
       case "clear":
         setSavedCommands([]);
         break;
-      case "cd":
-        setShellLocation("~");
+      case "I know bash!":
+        if (!bashExperience) {
+          setTerminalMessage(`*** BASH EXPERIENCE IS ALREADY ENABLED ***
+        `);
+        } else {
+          setBashExperience(true);
+          setTerminalMessage(`*** BASH EXPERIENCE ENABLED ***
+          Hello fellow bash user! The terminal will now behave like a real one and require the proper commands to operate. Have fun!
+        `);
+        }
+
+        break;
+      case "I don't know bash":
+        if (!bashExperience) {
+          setTerminalMessage(`*** BASH EXPERIENCE IS ALREADY DISABLED ***
+        `);
+        } else {
+          setBashExperience(false);
+          setTerminalMessage(`*** BASH EXPERIENCE DISABLED ***
+          You may now use any of the aliases listed in the help section to navigate.
+        `);
+        }
         break;
       default:
-        /*         console.log(typedInput);
-        commandOverride = "Unknown command"; */
-        setSavedCommands((prev) => [
-          ...prev,
-          `${typedInput}: command not found`,
-        ]);
+        if (!bashExperience) {
+          const validPath = findDirectory(currentCommand);
+          if (validPath) {
+            handlChangeDirectory(validPath);
+            setSavedCommands([]);
+          } else {
+            invalidCommand(currentCommand);
+          }
+        } else {
+          invalidCommand(currentCommand);
+        }
         break;
     }
+    setSavedCommandIndex(0);
+    setCurrentCommand("");
+    if (textAreaRef.current) {
+      textAreaRef.current.scrollIntoView();
+    }
+  }
 
-    /*     setSavedCommands((prev) => [...prev, typedInput]); */
-    /*     if (commandOverride) {
-      setSavedCommands((prev) => [...prev, commandOverride]);
+  function handleCDCommand(cdPath) {
+    const clearCommands = () => {
+      setSavedCommands([]);
+      setCurrentCommand("");
+    };
+
+    if (cdPath === "cd") {
+      const home = findDirectory("~");
+      handlChangeDirectory(home);
+      clearCommands();
+      return;
+    }
+
+    const pathname = cdPath.split(" ")[1];
+
+    const validPath = findDirectory(pathname);
+
+    if (validPath) {
+      handlChangeDirectory(validPath);
+      clearCommands();
     } else {
-      ;
-    } */
-
-    setTypedInput("");
+      setSavedCommands((prev) => [
+        ...prev,
+        `-bash: cd: ${pathname}: No such file or directory`,
+      ]);
+    }
   }
 
-  function changeDirectory() {}
-
-  if (width < 800) {
-    return (
-      <div className="h-full w-full p-4 flex flex-col">
-        <AboutMe />
-      </div>
-    );
-  }
-
+  // Filter line breaks and other random inserts by DOM
   function handleTypedInput(val) {
     if (val === "\n") handleCommand();
-    if (val === "<br>") setTypedInput("");
+    if (val === "<br>") setCurrentCommand("");
 
     if (
       val !== "<div><br></div>" &&
       val !== "<div><br></div><div><br></div>" &&
       val !== "<div><br></div><div> </div>"
     ) {
-      setTypedInput(val);
+      setCurrentCommand(val);
     }
   }
 
   const pastCommands = (
-    <>
-      <div className="whitespace-pre-line">{home}</div>
+    <div className="mt-8">
+      {}
       {savedCommands.map((command, i) => (
         <div
           key={command === "Unknown command" ? i : command}
@@ -135,40 +131,74 @@ export default function TerminalShell() {
           {command}
         </div>
       ))}
-    </>
+    </div>
   );
 
-  return (
-    <div
-      className="h-full w-full p-4 flex flex-col"
-      onClick={() => shellLocation === "~" && textAreaRef.current.focus()}
-    >
-      {loadedSection ? loadedSection : pastCommands}
+  const message = (message) => <p className="mt-8">{message}</p>;
 
-      {/* <div> */}
-      <div className="relative py-4">
-        <div className="absolute" ref={locationRef}>
-          derek@DMR-DESKTOP:~$
+  return (
+    <div className="min-h-full w-full  flex flex-col">
+      <div className="grow flex">{children}</div>
+      <div className=" w-full max-w-[1600px] mx-auto ">
+        {message ? message(terminalMessage) : pastCommands}
+        <div
+          className="relative py-8 px-6 w-full  mx-auto"
+          onClick={() =>
+            currentDirectory === "~" && textAreaRef.current.focus()
+          }
+        >
+          <div className="absolute" ref={locationRef}>
+            <span className="text-terminal-location">derek@DMR-DESKTOP</span>:
+            <span className="text-terminal-tilde">~</span>$
+          </div>
+          <TextareaAutosize
+            ref={textAreaRef}
+            spellcheck="false"
+            className="w-full resize-none bg-transparent outline-none"
+            onChange={(e) => handleTypedInput(e.target.value)}
+            value={currentCommand}
+            onKeyDown={(e) => {
+              if (e.key === "ArrowUp") {
+                e.preventDefault();
+                if (
+                  savedCommands.length > 0 &&
+                  savedCommandIndex < savedCommands.length
+                ) {
+                  // Increment the index
+                  setSavedCommandIndex((prev) => prev + 1);
+                  return setCurrentCommand(
+                    // Use a negative value to effectively reverse the array
+                    savedCommands.at(-Math.abs(savedCommandIndex + 1))
+                  );
+                }
+              }
+
+              if (e.key === "ArrowDown") {
+                e.preventDefault();
+                if (savedCommands.length > 0 && savedCommandIndex >= 0) {
+                  setSavedCommandIndex((prev) => prev - 1);
+                  console.log(savedCommandIndex);
+                  return setCurrentCommand(
+                    savedCommands.at(-Math.abs(savedCommandIndex - 1))
+                  );
+                } else {
+                  setCurrentCommand("");
+                }
+              }
+
+              if (e.key === "Enter") {
+                e.preventDefault();
+                handleCommand();
+              }
+            }}
+            minRows={1}
+            style={{
+              textIndent: locationRef.current
+                ? locationRef.current.clientWidth + 5
+                : 0,
+            }}
+          />
         </div>
-        <TextareaAutosize
-          ref={textAreaRef}
-          spellcheck="false"
-          className="w-full resize-none bg-transparent outline-none"
-          onChange={(e) => handleTypedInput(e.target.value)}
-          value={typedInput}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              e.preventDefault();
-              handleCommand(e.target.value);
-            }
-          }}
-          minRows={1}
-          style={{
-            textIndent: locationRef.current
-              ? locationRef.current.clientWidth + 5
-              : 0,
-          }}
-        />
       </div>
       {/* </div> */}
     </div>

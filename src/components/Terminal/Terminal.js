@@ -1,49 +1,68 @@
 import { useState, useEffect, useRef } from "react";
-
+import { useRouter } from "next/router";
 import styles from "./Terminal.module.scss";
 import TerminalTitleBar from "./TerminalTitleBar";
-import Typewriter from "./Typewriter/Typewriter";
 import terminalLines from "../../refs/terminalLines";
 import TerminalIntro from "./TerminalIntro";
-import Projects from "../../views/Projects/Projects";
-import AboutMe from "../../views/AboutMe/AboutMe";
-import Technologies from "../../views/Technologies/Technologies";
+import directories from "./logic/directories";
+
+import TerminalShell from "./TerminalShell";
 
 export default function Terminal({
   className,
   handleAnimOver,
   terminalAnimStart,
   terminalAnimOver,
+  customLocation,
+  containerOnly,
   children,
 }) {
-  const [shellLocation, setShellLocation] = useState("~");
+  // Use the first directory (home) as the starting page
+  const [currentDirectory, setCurrentDirectory] = useState(directories[0]);
+  const [bashExperience, setBashExperience] = useState(false);
 
-  const terminalLocations = [
-    {
-      location: "~",
-      component: <div>home</div>,
-    },
-    {
-      location: "~/about",
-      component: <AboutMe />,
-    },
-    {
-      location: "~/projects",
-      component: <Projects />,
-    },
-    {
-      location: "~/tech",
-      component: <Technologies />,
-    },
-  ];
+  const router = useRouter();
+  ////////////////////////////////////////////////////////////////////////////
+  // Render effects
+  ////////////////////////////////////////////////////////////////////////////
 
-  function handleChangeLocation(location) {
-    setShellLocation(location);
+  // Change current directory of shell based on url location
+  useEffect(() => {
+    const urlPath = router.asPath.slice(2);
+    const foundPath = findDirectory(urlPath);
+    if (foundPath) return setCurrentDirectory(foundPath);
+  }, [router]);
+
+  ////////////////////////////////////////////////////////////////////////////
+  // Helpers
+  ////////////////////////////////////////////////////////////////////////////
+  function findDirectory(name) {
+    const foundPath = directories.find((directory) =>
+      directory.names.find((dirName) => dirName === name)
+    );
+
+    if (bashExperience && foundPath) {
+      return foundPath.isPath ? foundPath : null;
+    }
+
+    return foundPath ? foundPath : null;
   }
 
-  const validLocations = ["about", "projects", "tech", "certs"];
+  ////////////////////////////////////////////////////////////////////////////
+  // Handlers
+  ////////////////////////////////////////////////////////////////////////////
 
+  // Handler to change shell directory
+  function handlChangeDirectory(directory) {
+    setCurrentDirectory(directory);
+  }
+
+  // Determines wether to show intro screen or terminal shell
   function terminalContentSelect() {
+    if (containerOnly) {
+      return children;
+    }
+
     if (terminalAnimStart && !terminalAnimOver) {
       return (
         <TerminalIntro
@@ -51,38 +70,48 @@ export default function Terminal({
           handleAnimOver={handleAnimOver}
         />
       );
-    } else if (terminalAnimStart && terminalAnimOver) {
-      return terminalLocations.find(
-        (location) => location.location === shellLocation
-      ).component;
+    } else if (terminalAnimOver) {
+      return (
+        <TerminalShell
+          currentDirectory={currentDirectory}
+          directories={directories}
+          handlChangeDirectory={handlChangeDirectory}
+          bashExperience={bashExperience}
+          setBashExperience={setBashExperience}
+          findDirectory={findDirectory}
+        >
+          {currentDirectory.component}
+        </TerminalShell>
+      );
     }
-    console.log("I shouldn't fire");
   }
 
   return (
     <div
-      className={`${styles.terminal_container} relative w-full bg-terminal-black text-terminal-text  drop-shadow-md ${className}`}
+      id="terminal"
+      className={`${styles.terminal_container}  h-full w-full bg-terminal-black text-terminal-text  drop-shadow-md flex flex-col ${className}`}
     >
       <TerminalTitleBar
         textData={terminalLines}
+        handleAnimOver={handleAnimOver}
+        currentDirectory={currentDirectory}
         carriageReturn={/* carriageReturn */ 0}
         setLocationText={/* setlocationText */ () => null}
         locationText={/* locationText */ "fuck"}
         handleTypeAnimOver={handleAnimOver}
-        terminalLocations={terminalLocations}
-        handleChangeLocation={handleChangeLocation}
+        directories={directories}
+        handlChangeDirectory={handlChangeDirectory}
+        customLocation={customLocation}
       />
       {/*  <div
         className={`h-full w-full text-[15px] grow shrink relative`}
-        basis-0
+        basis-0pT
       > */}
-      {terminalContentSelect()}
+      <div className="flex flex-col grow whitespace-pre-line leading-relaxed overflow-auto relative">
+        {terminalContentSelect()}
+      </div>
+
       {/*  </div> */}
     </div>
   );
-}
-
-// Random number helper
-function randomNumber(min, max) {
-  return Math.random() * (max - min) + min;
 }

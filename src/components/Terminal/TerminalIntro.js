@@ -97,7 +97,7 @@ export default function TerminalIntro({
   return carriageReturn.length === savedLines.length ? (
     tvEffect
   ) : (
-    <div className="h-full w-full p-4 overflow-hidden" ref={savedLinesRef}>
+    <div className="h-full w-full overflow-hidden" ref={savedLinesRef}>
       <div className="pb-12">{savedLines}</div>
     </div>
   );
