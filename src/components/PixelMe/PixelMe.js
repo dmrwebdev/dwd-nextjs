@@ -1,22 +1,21 @@
 import Image from "next/image";
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
+
+import { useAppContext } from "../../context/AppContext";
 import pixelMeTBG from "../../assets/pixel-me-tbg.png";
-import useDebounce from "../../hooks/useDebounce";
-import useWindowScrollPos from "../../hooks/useWindowScrollPos";
 import styles from "./PixelMe.module.scss";
 
-export default function PixelMe({ className }) {
+export default function PixelMe({ className, parentRef, animActive }) {
   const [mouseOverImg, setmouseOverImg] = useState(false);
-  const scrollPosition = useWindowScrollPos();
-  const debouncedScrollPos = useDebounce(scrollPosition, 200);
+  const { setIntroMeImgOver } = useAppContext();
 
   return (
     <div
       className={`${className} ${
-        debouncedScrollPos === 0
-          ? styles.pixel_img_anim
-          : styles.pixel_img_anim_exit
+        animActive ? styles.pixel_img_anim : styles.pixel_img_anim_exit
       } h-full w-full relative`}
+      onAnimationStart={() => setIntroMeImgOver(false)}
+      onAnimationEnd={() => !animActive && setIntroMeImgOver(true)}
     >
       <Image
         onMouseEnter={() => setmouseOverImg(true)}
