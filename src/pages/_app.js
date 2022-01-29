@@ -6,16 +6,16 @@ import "../styles/globals.css";
 import Layout from "../layout/Layout";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import index from "/src/styles/index.scss";
+import { AppWrapper } from "../context/AppContext";
 
-function MyApp({ Component, pageProps }) {
+function App({ Component, pageProps }) {
   const [introOver, setIntroOver] = useState(true);
-
   const [prevScrollPos, setPrevScrollPos] = useState(0);
 
   const router = useRouter();
 
   useEffect(() => {
-    console.log(introOver);
     if (router.pathname !== "/") {
       setIntroOver(true);
     }
@@ -23,19 +23,21 @@ function MyApp({ Component, pageProps }) {
   }, []);
 
   return (
-    <Layout
-      introOver={introOver}
-      prevScrollPos={prevScrollPos}
-      setPrevScrollPos={setPrevScrollPos}
-    >
-      <Component
-        {...pageProps}
+    <AppWrapper>
+      <Layout
         introOver={introOver}
-        setIntroOver={setIntroOver}
         prevScrollPos={prevScrollPos}
-      />
-    </Layout>
+        setPrevScrollPos={setPrevScrollPos}
+      >
+        <Component
+          {...pageProps}
+          introOver={introOver}
+          setIntroOver={setIntroOver}
+          prevScrollPos={prevScrollPos}
+        />
+      </Layout>
+    </AppWrapper>
   );
 }
 
-export default MyApp;
+export default App;
