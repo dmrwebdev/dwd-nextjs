@@ -4,16 +4,21 @@ import styles from "./Welcome.module.scss";
 import ContactBar from "../../components/ContactBar/ContactBar";
 import PixelMe from "../../components/PixelMe/PixelMe";
 import { useEffect, useRef, useState } from "react";
+import useIntersect from "../../hooks/useIntersect";
+import { useAppContext } from "../../context/AppContext";
 
 const wordList = [
   "full stack engineer",
-  "developer",
+  "builder",
   "computer nerd",
+  "gamer",
+  "developer",
   "fisherman",
 ];
 
 export default function Welcome({ introOver, prevScrollPos, className }) {
   const [selectedWordIndex, setSelectedWordIndex] = useState(0);
+  const [pixelAnimActive, setPixelAnimActive] = useState(false);
 
   const variableWordRef = useRef(null);
 
@@ -88,20 +93,34 @@ export default function Welcome({ introOver, prevScrollPos, className }) {
     /*        */
   );
 
+  const { introMeImgActive, setIntroMeImgActive } = useAppContext();
+
+  const [welcomeRef, entry] = useIntersect({
+    threshold: "1",
+  });
+
+  useEffect(() => {
+    if (
+      entry.isIntersecting /* && !terminalAnimOver && router.asPath === "/" */
+    ) {
+      setIntroMeImgActive(true);
+    } else {
+      setIntroMeImgActive(false);
+    }
+  }, [entry, setIntroMeImgActive]);
+
   return (
     <section
+      id="welcome"
       className={`${styles.intro} h-full relative bg-[#12263A] overflow-hidden`}
+      ref={welcomeRef}
     >
       {/*  <div className={styles.wave} /> */}
       {/*     {tvEffect} */}
       {fixedBGContainer}
       {heroGroup}
-      <div
-        className={`absolute bottom-[-50px] w-[230px] h-[230px] ${
-          prevScrollPos > 0 ? styles.pixelMe_anim_over : styles.pixel_img_anim
-        }`}
-      >
-        <PixelMe />
+      <div className={`absolute bottom-[-50px] w-[230px] h-[230px] `}>
+        <PixelMe parentRef={welcomeRef} animActive={introMeImgActive} />
       </div>
       {/*       <div className={`${styles.angles} `}>
         <div />

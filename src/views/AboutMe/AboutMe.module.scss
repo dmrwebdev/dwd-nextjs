@@ -3,7 +3,7 @@
 }
 
 .me_img_anim {
-  animation: slide-up 1s 0.8s ease-out forwards;
+  animation: slide-up 0.6s ease-out forwards;
   transform: translateY(100%);
 }
 
@@ -13,4 +13,8 @@
   100% {
     transform: translateY(0);
   }
+}
+
+.img_box_shadow {
+  box-shadow: 0px 0px 10px 6px rgba(0, 255, 255, 0.329);
 }

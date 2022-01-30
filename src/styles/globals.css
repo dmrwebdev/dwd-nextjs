@@ -1,14 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 html {
+  --elemStartX: 0px;
+  --elemStartY: 0px;
+  --screenCenterX: 50vw;
+  --ScreenCenterY: 50vh;
   /*   
   min-height: 100vh; */
   /*  height: -webkit-fill-available; */
 
   height: 100%;
   height: -webkit-fill-available;
+  scroll-behavior: smooth;
 }
 body {
   padding: 0;
@@ -37,4 +44,49 @@ a {
 .page_wrapper {
   /* padding: 0 1rem; */
   width: 100%;
+}
+
+/* #projects {
+  &::before {
+    content: "";
+    height: 100px;
+    margin: -100px 0 0;
+  }
+} */
+
+.anim_slide_in_center {
+  position: absolute;
+  animation: slide-in-center 1s forwards;
+}
+
+@keyframes slide-in-center {
+  0% {
+    /*     top: var(--elemStartY);
+    left: var(--elemStartX); */
+  }
+  100% {
+    transform: translate(/* calc( */ 50vw /*  - 100%) */, calc(50vh - 457px));
+    /*     top: var(--screenCenterY);
+    left: var(--screenCenterX); */
+    /* transform: translateX(-50%); */
+    //transform-origin: left bottom;
+  }
+}
+
+.anim_slide_out_return {
+  animation: slide-out-return 1s forwards;
+}
+
+@keyframes slide-out-return {
+  0% {
+    /* position: absolute; */
+    /*     top: var(--screenCenterY);
+    left: var(--screenCenterX); */
+  }
+  100% {
+    transform: translateY(calc(50vh - 50%));
+    /*  position: static; */
+    //transform: translateX(-50%);
+    //transform-origin: left bottom;
+  }
 }

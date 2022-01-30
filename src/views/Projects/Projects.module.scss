@@ -2,7 +2,7 @@
   /*   transform: perspective(500px) rotateY(35deg); */
   background-color: black;
   transform-origin: top;
-  transition: all 1s;
+  transition: all 0.5s;
   &:hover {
     /*     opacity: 0.25; */
     /*     transform: rotateY(0deg); */
@@ -34,4 +34,33 @@
     hsla(189, 92%, 69%, 1) 0%,
     hsla(205, 94%, 52%, 1) 41%
   );
+}
+
+.header_decoration {
+  & > div:first-child {
+    background: repeating-linear-gradient(
+      15deg,
+      #182a40 0%,
+      #182a40 25.1%,
+      #606dbc 25%,
+      #606dbc 49.9%,
+      #465298 50%,
+      #465298 74.5%,
+      #465298 75%
+    );
+  }
+
+  & > div:last-child {
+    background: repeating-linear-gradient(
+      -15deg,
+      #182a40 0,
+      #606dbc 25%,
+      #465298 50%,
+      #465298 75%
+    );
+  }
+}
+
+.img_inset_drop_shadow {
+  box-shadow: inset 0 0 10px #000000;
 }

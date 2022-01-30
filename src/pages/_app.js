@@ -6,7 +6,6 @@ import "../styles/globals.css";
 import Layout from "../layout/Layout";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import index from "/src/styles/index.scss";
 import { AppWrapper } from "../context/AppContext";
 
 function App({ Component, pageProps }) {

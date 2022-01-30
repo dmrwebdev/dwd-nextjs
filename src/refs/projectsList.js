@@ -5,19 +5,9 @@ import quoteGenerator from "../assets/previews/quoteGenerator.png";
 import reactulator from "../assets/previews/reactulator.png";
 import wonderclock from "../assets/previews/wonderclock.png";
 import dmrForm from "../assets/previews/dmrForm.png";
+import Markdown from "../assets/previews/markdown-previewer.png";
 
 const projectsList = [
-  /*   {
-    title: "API Microcenter",
-    linkTypes: ["Project Link", "Github Project Link"],
-    projectURL: "/projects/microcenter",
-    githubURL: "https://github.com/dmrdevops/api-microcenter",
-    previewAlt: "API Microcenter Preview",
-    previewURL: "",
-    description:
-      "A compilation of various REST API's modified to return data from server without refreshing page.",
-    tech: ["NodeJS", "ExpressJS", "Sass", "Pug"],
-  }, */
   {
     title: "The Dot Devs",
     linkTypes: ["Project Link", "Github Project Link"],
@@ -29,6 +19,17 @@ const projectsList = [
     tech: ["NextJS", "Tailwind"],
   },
   {
+    title: "XP Markdown Previewer",
+    linkTypes: ["Project Link", "Github Project Link"],
+    projectURL: "/projects/xp-markdown-previewer",
+    githubURL: "#",
+    previewAlt: "Markdown previewer styled after Windows XP",
+    previewImg: Markdown,
+    description:
+      "Another early React application, this started off as a Free Code Camp excercise developing a simple Markdown previewer. Nostalgia took over however once I found a Windows XP styled CSS library, and soon enough the app evolved into a simple but faithful recreation of the WinXP desktop.",
+    tech: ["React", "SCSS"],
+  },
+  {
     title: "React Drum Kit",
     linkTypes: ["Project Link", "Github Project Link"],
     projectURL: "/projects/react-drum-kit",
@@ -37,7 +38,7 @@ const projectsList = [
     previewImg: drumkit,
     description:
       "My first React application! This project helped me learn the concept of state and component lifecycles, and opened a whole new window of opportunity for me when it came to app devlopment.",
-    tech: ["JSX", "SCSS"],
+    tech: ["React", "SCSS"],
   },
   {
     title: "25-5 Exercise Clock",
@@ -48,7 +49,7 @@ const projectsList = [
     previewImg: sessionClock,
     description:
       "A Free Code Camp exercise developing a session timer with React. Seemed easy enough until I found out about the intracacies of setTimeout and component lifecycles!",
-    tech: ["HTML", "CSS", "JSX"],
+    tech: ["React", "CSS"],
   },
   {
     title: "Reactulator",
@@ -59,7 +60,7 @@ const projectsList = [
     previewImg: reactulator,
     description:
       "This one was challenging but a lot of fun- as my first React application, I learned a ton regarding state and ",
-    tech: ["HTML", "CSS", "JSX"],
+    tech: ["React", "CSS"],
   },
   {
     title: "Random Quote Machine",
