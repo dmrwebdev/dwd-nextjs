@@ -28,12 +28,14 @@ const directories = [
     * help: See all available commands
     * home: Go back to this screen
     
-    For the full bash terminal experience, enter "I know bash!".
+
   
     Please feel free to explore and check out some of my work!
   `}</div>
       </div>
     ),
+
+    //For the full bash terminal experience, enter "I know bash!".
   },
   {
     names: ["~/about", "about"],
