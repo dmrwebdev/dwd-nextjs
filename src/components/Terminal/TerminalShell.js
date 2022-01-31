@@ -122,7 +122,6 @@ export default function TerminalShell({
 
   const pastCommands = (
     <div className="mt-8">
-      {}
       {savedCommands.map((command, i) => (
         <div
           key={command === "Unknown command" ? i : command}
@@ -140,7 +139,7 @@ export default function TerminalShell({
     <div className="min-h-full w-full  flex flex-col">
       <div className="grow flex">{children}</div>
       <div className=" w-full max-w-[1600px] mx-auto ">
-        {message ? message(terminalMessage) : pastCommands}
+        {terminalMessage ? message(terminalMessage) : pastCommands}
         <div
           className="relative py-8 px-6 w-full  mx-auto"
           onClick={() =>
