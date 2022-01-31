@@ -35,7 +35,7 @@ jobs:
         uses: Burnett01/rsync-deployments@5.2
         with:
           switches: -avzr --delete
-          path: src/.next/app
+          path: src/app
           remote_path: ${{ secrets.REMOTE_DIR }}
           remote_host: ${{ secrets.REMOTE_HOST }}
           remote_user: ${{ secrets.REMOTE_USER }}
