@@ -19,17 +19,18 @@ jobs:
       - name: Installing yarn
         run: npm install -g yarn
       
-      - name: Installing dependencies from lockfile
-        run: yarn install --frozen-lockfile
+     # - name: Installing dependencies from lockfile
+      #  run: yarn install --frozen-lockfile
       
    #   - name: Building app
   #    run: yarn build
       
       - name: Move static files to standalone folder
-        run: pwd #mv .next/static .next/standalone/.next
+        run: ls 
+        #mv .next/static .next/standalone/.next
       
-      - name: Rename standalone folder to app
-        run: mv .next/standalone app
+      #- name: Rename standalone folder to app
+      #  run: mv .next/standalone app
       
     #  - name: Rsync 
      #   uses: Burnett01/rsync-deployments@5.2
