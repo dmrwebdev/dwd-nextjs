@@ -6,6 +6,7 @@ import reactulator from "../assets/previews/reactulator.png";
 import wonderclock from "../assets/previews/wonderclock.png";
 import dmrForm from "../assets/previews/dmrForm.png";
 import Markdown from "../assets/previews/markdown-previewer.png";
+import vemReport from "../assets/previews/vemReport.png";
 
 const projectsList = [
   {
@@ -84,6 +85,7 @@ const projectsList = [
       "My first attempt at Javascript! This was inspired by a Wes Bos course were I learned how to create an animated analog clock. Aside from learning Javascript date and time manipulation, this was a key lesson in learning how to utilize CSS transformations in order to animate the clock hands.",
     tech: ["HTML", "CSS", "JS"],
   },
+
   /*   {
     title: "Super Awesome Program Manual",
     linkTypes: ["Project Link", "Github Project Link"],
@@ -118,6 +120,17 @@ const projectsList = [
     description:
       "My very first webpage. A simple survey form created as a Free Code Camp exercise, this was my first forray into basic CSS and HTML. Ignore the option for CSS as a programming language, I've learned since then ;)",
     tech: ["HMTL", "CSS"],
+  },
+  {
+    title: "VEM Work Report",
+    linkTypes: ["Project Link"],
+    projectURL: "/vemReport.xlsm",
+    githubURL: "#",
+    previewAlt: "VEM Work Report Preview",
+    previewImg: vemReport,
+    description:
+      "The Excel sheet that started it all. My absolute first venture into developing, I was tasked with replacing our paper report with an electronic version. Utilizing macros and VBA, I was amazed at how much excel can actually do natively- By the end this report was able to conditionally render and alert users of missing data, generate a printable copy, link it up to our job tracking system (from another vendor none the less), and more. Looking back I kick myself- oh how much easier this would have been with some html and javascript.",
+    tech: ["Excel"],
   },
 ];
 
