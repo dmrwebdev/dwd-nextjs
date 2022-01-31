@@ -25,20 +25,11 @@ jobs:
       - name: Building app
         run: yarn build
 
-      - name: Moving static files to standalone folder
-        run: mv .next/static .next/standalone/.next
-
-      - name: Renaming standalone folder to app
-        run: mv .next/standalone app
-
-      - name: Moving to app folder
-        run: cd app
-
-      - name: Rsync
+      - name: Rsync to server
         uses: Burnett01/rsync-deployments@5.2
         with:
           switches: -avzr --delete
-          path: app
+          path: src/
           remote_path: ${{ secrets.REMOTE_DIR }}
           remote_host: ${{ secrets.REMOTE_HOST }}
           remote_user: ${{ secrets.REMOTE_USER }}
