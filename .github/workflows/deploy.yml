@@ -19,14 +19,14 @@ jobs:
       - name: Installing yarn
         run: npm install -g yarn
       
-     # - name: Installing dependencies from lockfile
-      #  run: yarn install --frozen-lockfile
+      - name: Installing dependencies from lockfile
+        run: yarn install --frozen-lockfile
       
-   #   - name: Building app
-  #    run: yarn build
+      - name: Building app
+        run: yarn build
       
       - name: Move static files to standalone folder
-        run: ls 
+        run: ls -la .next/
         #mv .next/static .next/standalone/.next
       
       #- name: Rename standalone folder to app
