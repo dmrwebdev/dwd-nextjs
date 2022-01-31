@@ -59,7 +59,7 @@ const projectsList = [
     previewAlt: "Reactulator Preview",
     previewImg: reactulator,
     description:
-      "This one was challenging but a lot of fun- as my first React application, I learned a ton regarding state and ",
+      "This one was challenging but a lot of fun- as one of my early React applications, it was originally completed using class components and later rebuilt using hooks after learning of them. Don't think I could ever go back!",
     tech: ["React", "CSS"],
   },
   {
