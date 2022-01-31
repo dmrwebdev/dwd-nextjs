@@ -11,27 +11,21 @@ jobs:
     steps:
       - name: Checking out
       - uses: actions/checkout@v2
-      
       - name: Setting up node
       - uses: actions/setup-node@v2
         with:
           node-version: 16
-      
       - name: Installing yarn
       - run: npm install -g yarn
-      
       - name: Installing dependencies from lockfile
       - run: yarn install --frozen-lockfile
-      
       - name: Building app
       - run: yarn build
-      
       - name: Move static files to standalone folder
       - run: mv .next/static .next/standalone/.next
-      
       - name: Rename standalone folder to app
       - run: mv .next/standalone app
-          
+      
       - name: Rsync 
       - uses: Burnett01/rsync-deployments@5.2
         with:
