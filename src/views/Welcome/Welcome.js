@@ -76,7 +76,7 @@ export default function Welcome({ introOver, prevScrollPos, className }) {
       <div className={` flex justify-center items-center`}>
         {/* ${styles.anim_reveal} */}
         <h1 className="flex flex-col flex-wrap  drop-shadow-md ">
-          <span className={`  text-2xl md:text-6xl`}>Hello, my names</span>
+          <span className={`  text-2xl md:text-6xl`}>{`Hello, my name's`}</span>
           <b>Derek Robertson!</b>
         </h1>
         <span className={`${styles.handwave_anim} ml-4`}>👋</span>
