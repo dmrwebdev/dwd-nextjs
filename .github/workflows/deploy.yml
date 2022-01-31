@@ -30,12 +30,18 @@ jobs:
       
       - name: Rename standalone folder to app
         run: mv .next/standalone app
+        
+      - name: show files
+        run: ls -la
+        
+      - name: show next files
+        run: ls -la .next
       
       - name: Rsync 
         uses: Burnett01/rsync-deployments@5.2
         with:
           switches: -avzr --delete
-          path: src/.next/app
+          path: app
           remote_path: ${{ secrets.REMOTE_DIR }}
           remote_host: ${{ secrets.REMOTE_HOST }}
           remote_user: ${{ secrets.REMOTE_USER }}
