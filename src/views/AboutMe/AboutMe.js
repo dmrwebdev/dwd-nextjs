@@ -132,7 +132,7 @@ Constantly in the pursuit of expanding my knowledge and skills, I'm always open 
 `;
 
 const mobileAboutMeText = `
-  Hi I'm Derek, and welcome to my portfolio! I'm a full stack engineer hailing from the SF bail area. As a former Electric Motor Mechanic of over a decade, I found my true passion in developing and haven't been able to look back since. Today I thoroughly enjoy building responsive and user friendly websites and  applications, while constantly expanding my technical knowledge through utilization of the latest tech stacks and trends in the developing world.`;
+  Hi I'm Derek, and welcome to my portfolio! I'm a full stack engineer hailing from the SF bail area. As a former Electric Motor Mechanic of over a decade, I found my true passion in developing and haven't been able to look back since. Today I thoroughly enjoy building responsive and user friendly websites and  applications, while constantly expanding my technical knowledge through utilization of the latest tech stacks and trends in web development.`;
 
 {
   /* <section className="h-full text-white relative overflow-auto">
