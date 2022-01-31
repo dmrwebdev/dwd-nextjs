@@ -33,10 +33,7 @@ jobs:
 
       - name: Moving to app folder
         run: cd app
-
-      - name: Installing next
-        run: yarn install
-
+        
       - name: Rsync
         uses: Burnett01/rsync-deployments@5.2
         with:
