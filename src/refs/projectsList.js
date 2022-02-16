@@ -13,7 +13,7 @@ const projectsList = [
     title: "The Dot Devs",
     linkTypes: ["Project Link", "Github Project Link"],
     projectURL: "https://www.thedotdevs.com",
-    githubURL: "#",
+    githubURL: "https://github.com/the-dot-devs/tdd-portfolio",
     previewAlt: "The Dot Devs Preview",
     previewImg: tdd,
     description: "Company website for The Dot Devs",
@@ -23,7 +23,7 @@ const projectsList = [
     title: "XP Markdown Previewer",
     linkTypes: ["Project Link", "Github Project Link"],
     projectURL: "/projects/xp-markdown-previewer",
-    githubURL: "#",
+    githubURL: "https://github.com/dmrwebdev/xp-safe-space",
     previewAlt: "Markdown previewer styled after Windows XP",
     previewImg: Markdown,
     description:
