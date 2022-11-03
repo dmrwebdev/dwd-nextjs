@@ -47,7 +47,7 @@ const contactLinks = [
     alt: "LinkedIn Profile",
   },
   {
-    link: "/Derek_Robertson_Resume_2022.pdf",
+    link: "/dr_resume.pdf",
     image: resume,
     alt: "Resume",
   },
