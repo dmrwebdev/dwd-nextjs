@@ -1,0 +1,9 @@
+//TODO: Paths option is not working for some reason
+{
+  "compilerOptions": {
+    "baseUrl": "./src/"
+    /*     "paths": {
+      "@/assets/*": ["/assets/*"]
+    } */
+  }
+}
