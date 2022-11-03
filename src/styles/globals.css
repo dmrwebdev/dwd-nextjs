@@ -4,6 +4,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Hack";
+  src: url("/fonts/hack.ttf");
+}
+
+@font-face {
+  font-family: "Segoe UI";
+  src: url("/fonts/segoe_ui.ttf");
+}
+
 html {
   --elemStartX: 0px;
   --elemStartY: 0px;

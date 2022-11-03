@@ -53,9 +53,9 @@ export default function TerminalTitleBar({
               objectFit="contain"
             />
           </div>
-          <div className="text-white whitespace-nowrap overflow-hidden font-['Segoe_UI']">
+          <div className="text-white whitespace-nowrap overflow-hidden font-['Segoe UI']">
             {`dmr@DESKTOP: `}
-            <span className="text-base">{directory.names[0]}</span>
+            <span className="text-xs">{directory.names[0]}</span>
           </div>
           <div className="p-[5px] pl-[10px]  ml-auto">
             <div className="h-[10px] w-[10px] flex justify-center items-center">
