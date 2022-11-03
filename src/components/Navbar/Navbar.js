@@ -51,9 +51,6 @@ export default function Navbar({ prevScrollPos, setPrevScrollPos }) {
       <Link href="/#tech">
         <a>Tech and Certs</a>
       </Link>
-      {/*       <Link href="/Derek_Robertson_Resume_2022.pdf">
-        <a>Resume</a>
-      </Link> */}
     </nav>
   );
 }
