@@ -1,19 +1,19 @@
 {
-    "name": "Develop With Derek",
-    "short_name": "Develop With Derek",
-    "icons": [
-        {
-            "src": "/android-chrome-192x192.png",
-            "sizes": "192x192",
-            "type": "image/png"
-        },
-        {
-            "src": "/android-chrome-512x512.png",
-            "sizes": "512x512",
-            "type": "image/png"
-        }
-    ],
-    "theme_color": "#1a9def",
-    "background_color": "#1a9def",
-    "display": "standalone"
+  "name": "Develop With Derek",
+  "short_name": "DWD",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#1a9def",
+  "background_color": "#1a9def",
+  "display": "standalone"
 }
