@@ -1,5 +1,5 @@
 import Image from "next/image";
-import walter from "../../../assets/images/Walter.jpg";
+import { walter } from "@assets";
 import TerminalContentHeading from "../../../components/Terminal/subcomponents/TerminalContentHeading";
 
 export default function Walter() {
