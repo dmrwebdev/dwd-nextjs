@@ -1,62 +1,11 @@
-.angles {
-  width: 110%;
-  height: 50px;
-  display: inline-block;
-  div {
-    width: 50%;
-    height: 100px;
-    background-color: #f0f0f0;
-  }
-
-  div:first-child {
-    transform: rotate(5deg);
-  }
-
-  div:last-child {
-    transform: rotate(-5deg);
-  }
-  position: absolute;
-  bottom: 0;
-
-  /*     transform: translateY(-100%); */
-  z-index: 100;
-  /* } */
-  /*  
-    transform: skewY(6deg);
-    transform-origin: bottom; */
-  /*     
-    background: hsla(0, 0%, 0%, 1);
-
-    background: linear-gradient(
-      90deg,
-      hsla(0, 0%, 0%, 1) 0%,
-      hsla(0, 0%, 0%, 0.75) 65%,
-      hsla(0, 0%, 0%, 0) 100%
-    );
-
-    background: -moz-linear-gradient(
-      90deg,
-      hsla(0, 0%, 0%, 1) 0%,
-      hsla(0, 0%, 0%, 0.75) 65%,
-      hsla(0, 0%, 0%, 0) 100%
-    );
-
-    background: -webkit-linear-gradient(
-      90deg,
-      hsla(0, 0%, 0%, 1) 0%,
-      hsla(0, 0%, 0%, 0.75) 65%,
-      hsla(0, 0%, 0%, 0) 100%
-    ); */
-  /*   } */
-}
-
-.fixed_bg_shade {
+#welcome {
   background: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 0.7) 0%,
-    rgba(0, 0, 0, 0.45) 63%,
-    rgba(0, 0, 0, 0.1) 80%
-  );
+      90deg,
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(0, 0, 0, 0.45) 63%,
+      rgba(0, 0, 0, 0.1) 80%
+    ),
+    url("/images/code_bg.jpg") bottom/cover no-repeat fixed;
 }
 
 .hello_container {
@@ -64,7 +13,7 @@
   text-shadow: 2px 2px #131112;
 }
 
-.anim_reveal {
+/* .anim_reveal {
   animation: reveal 1s forwards;
   height: 10px;
 }
@@ -73,25 +22,25 @@
   0% {
     height: 10px;
   }
-  /* 50% {
+  50% {
     opacity: 1;
-  } */
+  }
   100% {
     height: 100%;
   }
-}
+} */
 
-.slide_bottom {
+/* .slide_bottom {
   -webkit-animation: slide-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   animation: slide-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-}
+} */
 
 /**
  * ----------------------------------------
  * animation slide-bottom
  * ----------------------------------------
  */
-@-webkit-keyframes slide-bottom {
+/* @-webkit-keyframes slide-bottom {
   0% {
     -webkit-transform: translateY(0);
     transform: translateY(0);
@@ -110,16 +59,7 @@
     -webkit-transform: translateY(100px);
     transform: translateY(100px);
   }
-}
-
-.anim_drop_up {
-}
-
-.anim_drop_left {
-}
-
-.anim_drop_right {
-}
+} */
 
 // https://codepen.io/anon/embed/sJpDj?height=500&theme-id=1&slug-hash=sJpDj&default-tab=result#result-box
 .content {
