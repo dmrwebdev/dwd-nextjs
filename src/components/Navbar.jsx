@@ -112,8 +112,8 @@ export default function Navbar({ prevScrollPos, setPrevScrollPos }) {
       className={`${
         // If scroll position is not top use a higher opacity
         (mobileNavActive &&
-          `bg-[#0e161b] opacity-${scrollPosition === 0 ? "75" : " 95"}`) ||
-        (!isBreakpoint && scrollPosition !== 0 && "bg-[#0e161b] opacity-95")
+          `bg-[#0e161b] opacity-${scrollPosition === 0 ? "75" : "100"}`) ||
+        (!isBreakpoint && scrollPosition !== 0 && "bg-[#0e161b] opacity-100")
       }
       font-["Hack"]
       w-full fixed z-10
