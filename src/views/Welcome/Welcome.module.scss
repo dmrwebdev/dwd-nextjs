@@ -1,0 +1,86 @@
+#welcome {
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.45) 63%, rgba(0, 0, 0, 0.1) 80%),
+    url("/images/code_bg.jpg") bottom/cover no-repeat fixed;
+}
+
+.hello_container {
+  font-family: "Oxygen", sans-serif;
+  text-shadow: 2px 2px #131112;
+}
+
+// https://codepen.io/anon/embed/sJpDj?height=500&theme-id=1&slug-hash=sJpDj&default-tab=result#result-box
+.content {
+  overflow: hidden;
+
+  font-family: "Lato", sans-serif;
+  color: #ecf0f1;
+  display: inline-flex;
+  justify-content: space-between;
+
+  &:before {
+    content: "[";
+  }
+
+  &:after {
+    content: "]";
+  }
+
+  &:after,
+  &:before {
+    color: #16a085;
+  }
+
+  &__container {
+    display: inline;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+
+    &__text {
+      animation: textDropDown 1s;
+    }
+  }
+}
+
+@keyframes textDropDown {
+  0% {
+    transform: translateY(-100px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.handwave_anim {
+  animation: hand-wave 2.5s 1s;
+  transform-origin: 70% 70%; /* Pivot around the bottom-left palm */
+  display: inline-block;
+}
+
+@keyframes hand-wave {
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(14deg);
+  } /* The following five values can be played with to make the waving more or less extreme */
+  20% {
+    transform: rotate(-8deg);
+  }
+  30% {
+    transform: rotate(14deg);
+  }
+  40% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+  60% {
+    transform: rotate(0deg);
+  } /* Reset for the last half to pause */
+  100% {
+    transform: rotate(0deg);
+  }
+}
