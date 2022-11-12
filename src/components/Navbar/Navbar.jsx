@@ -5,6 +5,7 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { smMediaQuery } from "@data";
 import { useWindowEffectsContext } from "@context/WindowEffectsContext";
 import { useDebounce, useMediaQuery, useWindowScrollPos } from "@hooks";
+import { APP_SECTIONS } from "@pages/app_constants";
 import NavLink from "./NavLink";
 
 export default function Navbar() {
@@ -66,9 +67,9 @@ export default function Navbar() {
       }}
       ref={mobileLinksRef}
     >
-      {links.map((link) => (
-        <NavLink key={link.url} link={link} setMobileNavActive={setMobileNavActive} />
-      ))}
+      {[...APP_SECTIONS.values()].map(
+        (link) => link.active && <NavLink key={link.url} link={link} setMobileNavActive={setMobileNavActive} />
+      )}
     </div>
   );
 
@@ -97,22 +98,3 @@ export default function Navbar() {
     </nav>
   );
 }
-
-const links = [
-  {
-    url: "/",
-    text: "Home",
-  },
-  {
-    url: "/#about-me",
-    text: "About Me",
-  },
-  {
-    url: "/#projects",
-    text: "Projects",
-  },
-  {
-    url: "/#tech",
-    text: "Tech",
-  },
-];
