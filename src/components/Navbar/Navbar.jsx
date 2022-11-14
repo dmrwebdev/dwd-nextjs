@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
-import { smMediaQuery } from "@data";
+import { smMediaQuery } from "@pages/app_constants";
 import { useWindowEffectsContext } from "@context/WindowEffectsContext";
 import { useDebounce, useMediaQuery, useWindowScrollPos } from "@hooks";
 import { APP_SECTIONS } from "@pages/app_constants";
@@ -35,6 +35,7 @@ export default function Navbar() {
       setVisible(inView);
       !inView && setMobileNavActive(false);
       // Use the previous scroll position for next calculation
+      // !!TODO: KILL THIS FOR PERFORMANCE
       setPrevScrollPos(currentScrollPos);
     }
 

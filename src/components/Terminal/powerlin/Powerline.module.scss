@@ -1,0 +1,45 @@
+/* .pointer {
+  display: flex;
+
+  padding-left: 1rem;
+  color: black;
+  background: red;
+} */
+
+/* .pointer:after {
+
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-left: 20px solid white;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+} */
+// .pointer:after {
+//   /*   padding-left: inherit;
+//   padding-right: inherit; */
+//   padding-left: 1rem;
+//   background-color: inherit;
+//
+//   /*   content: "";
+//   position: absolute; */
+//   z-index: 1;
+//   /*   right: 0;
+//   width: 100px; */
+//   height: 100%;
+//   /*   transform: translate(0.95rem, -3px); */
+//   clip-path: polygon(100% 50%, 0 0, 0 100%);
+// }
+
+.pointer:after {
+  background-color: inherit;
+  content: "";
+  padding: 0;
+  top: 0;
+  right: -20px;
+  width: 20px;
+  height: 100%;
+  position: absolute;
+  clip-path: polygon(100% 50%, 0 0, 0 100%);
+}

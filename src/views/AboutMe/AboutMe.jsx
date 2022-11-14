@@ -12,7 +12,7 @@ export default function AboutMe() {
 
   const { introImgOver } = useWindowEffectsContext();
   const [meImgRef, entry] = useIntersect({ threshold: "0" });
-  const [largeViewport] = useMediaQuery(mdMediaQuery);
+  const [mdViewport] = useMediaQuery(mdMediaQuery);
 
   const appSection = APP_SECTIONS.get("/#about-me");
 
@@ -25,16 +25,16 @@ export default function AboutMe() {
     }
   }, [entry]);
 
-  const aboutMeText = largeViewport ? ABOUT_ME_TEXT : SHORTENED_ABOUT_ME_TEXT;
+  const aboutMeText = mdViewport ? ABOUT_ME_TEXT : SHORTENED_ABOUT_ME_TEXT;
 
   const aboutMe = (
     <section
-      id={`${!largeViewport ? "about-me" : ""}`}
+      id={`${!mdViewport ? "about-me" : ""}`}
       className="min-h-screen md:min-h-0 w-full max-w-[1600px] mx-auto bg-[#0c0c0c] text-[#cccccc] font-['hack']"
       ref={meImgRef}
     >
       {/* --- Show single titlebar tab if small layout --- */}
-      {!largeViewport && <TerminalTitleBar customLocation={appSection} />}
+      {!mdViewport && <TerminalTitleBar customLocation={appSection} />}
       <TerminalLocationLine directory={`~/${appSection.name}`} />
       <div className=" w-full p-4 md:p-6">
         <div className="mx-auto max-w-[400px] w-full m-2 border-4 border-[#003153] rounded-3xl mb-6">
@@ -59,10 +59,10 @@ export default function AboutMe() {
           </div>
         </div>
         {/* --- About Me Text --- */}
-        <p className="p-3 sm:p-0 pt-0 text-sm *md:text-base">{aboutMeText}</p>
+        <p className="p-3 sm:p-0 pt-0 text-sm lg:text-base">{aboutMeText}</p>
       </div>
       {/* --- Show ContactBar if large viewport */}
-      {largeViewport && <ContactBar />}
+      {mdViewport && <ContactBar />}
     </section>
   );
 

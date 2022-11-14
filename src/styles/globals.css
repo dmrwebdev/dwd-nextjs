@@ -14,30 +14,24 @@
   src: url("/fonts/segoe_ui.ttf");
 }
 
-html {
-  --elemStartX: 0px;
-  --elemStartY: 0px;
-  --screenCenterX: 50vw;
-  --ScreenCenterY: 50vh;
-  /*   
-  min-height: 100vh; */
-  /*  height: -webkit-fill-available; */
+/* Set initial container to match height of body */
+#__next {
+  height: 100%;
+}
 
+html {
   height: 100%;
   height: -webkit-fill-available;
   scroll-behavior: smooth;
 }
+
 body {
   padding: 0;
   margin: 0;
-  font-family: /* -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,  */ Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: /* -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,  */ Oxygen, Ubuntu, Cantarell, Fira Sans,
+    Droid Sans, Helvetica Neue, sans-serif;
   height: 100%;
 }
-/* 
-main {
-  height: 100%;
-} */
 
 a {
   color: inherit;
@@ -45,58 +39,4 @@ a {
 }
 * {
   box-sizing: border-box;
-}
-
-#__next {
-  height: 100%;
-}
-
-.page_wrapper {
-  /* padding: 0 1rem; */
-  width: 100%;
-}
-
-/* #projects {
-  &::before {
-    content: "";
-    height: 100px;
-    margin: -100px 0 0;
-  }
-} */
-
-.anim_slide_in_center {
-  position: absolute;
-  animation: slide-in-center 1s forwards;
-}
-
-@keyframes slide-in-center {
-  0% {
-    /*     top: var(--elemStartY);
-    left: var(--elemStartX); */
-  }
-  100% {
-    transform: translate(/* calc( */ 50vw /*  - 100%) */, calc(50vh - 457px));
-    /*     top: var(--screenCenterY);
-    left: var(--screenCenterX); */
-    /* transform: translateX(-50%); */
-    //transform-origin: left bottom;
-  }
-}
-
-.anim_slide_out_return {
-  animation: slide-out-return 1s forwards;
-}
-
-@keyframes slide-out-return {
-  0% {
-    /* position: absolute; */
-    /*     top: var(--screenCenterY);
-    left: var(--screenCenterX); */
-  }
-  100% {
-    transform: translateY(calc(50vh - 50%));
-    /*  position: static; */
-    //transform: translateX(-50%);
-    //transform-origin: left bottom;
-  }
 }

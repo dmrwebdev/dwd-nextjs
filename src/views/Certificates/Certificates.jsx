@@ -1,15 +1,26 @@
 import Image from "next/image";
 import { useMediaQuery } from "@hooks";
-import { mdMediaQuery } from "@data";
-import { DecorativeTitleBar } from "@components";
+import { APP_SECTIONS, mdMediaQuery } from "@pages/app_constants";
+import { TerminalLocationLine, TerminalSectionHeading, TerminalTitleBar } from "@components";
 import { CERTIFICATES } from "./Certificates.constants";
 
 export default function Certificates() {
-  const [isBreakPoint] = useMediaQuery(mdMediaQuery);
+  const [mdViewport] = useMediaQuery(mdMediaQuery);
 
   return (
     <section className="h-screen w-full bg-[rgb(12,12,12)]">
-      {!isBreakPoint && <DecorativeTitleBar customLocation="~/Certs" link="/#certifications" />}
+      {!mdViewport ? (
+        <>
+          <TerminalTitleBar customLocation={APP_SECTIONS.get("/#certs")} />
+          <TerminalLocationLine directory={"~/certs"} className={"mb-2"} />
+        </>
+      ) : (
+        <>
+          <TerminalLocationLine directory={"~/certs"} className={"mb-2"} />
+          <TerminalSectionHeading>Certifications</TerminalSectionHeading>
+        </>
+      )}
+
       <ol className="*h-full *bg-[#0c0c0c] text-[#cccccc] p-6 pt-8 space-y-8">
         {CERTIFICATES.map((cert, i) => (
           <div key={cert.title} className="flex *justify-between *items-center">

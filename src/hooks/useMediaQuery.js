@@ -1,7 +1,13 @@
 import { useState, useCallback, useEffect } from "react";
 
+export const breakPoints = {
+  sm: 640,
+  md: 768,
+};
+
 export default function useMediaQuery(width) {
-  const [targetReached, setTargetReached] = useState(false);
+  // TODO: Figure out how to account for SSR and initial value
+  const [targetReached, setTargetReached] = useState(null);
 
   useEffect(() => {
     const updateTarget = (e) => {
@@ -12,17 +18,18 @@ export default function useMediaQuery(width) {
       }
     };
 
-    const media = window.matchMedia(`(max-width: ${width}px)`);
+    const media = window.matchMedia(`(min-width: ${width}px)`);
     media.addEventListener("change", updateTarget);
 
     // Check on mount (callback is not called until a change occurs)
     if (media.matches) {
-      console.log("firing");
       setTargetReached(true);
+    } else {
+      setTargetReached(false);
     }
 
     return () => media.removeEventListener("change", updateTarget);
   }, [width]);
 
-  return targetReached;
+  return [targetReached, breakPoints];
 }

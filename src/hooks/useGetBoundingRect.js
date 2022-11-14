@@ -1,5 +1,9 @@
 export default function useGetBoundingRect(node) {
-  const { top, bottom, left, right } = node.getBounding;
+  if (!node) {
+    return {};
+  }
 
-  return {};
+  const { top, bottom, left, right } = node.getBoundingClientRect();
+
+  return { top, bottom, left, right };
 }

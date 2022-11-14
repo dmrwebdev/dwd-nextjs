@@ -1,23 +1,18 @@
-import tdd from "../assets/previews/thedotdevs.png";
-import drumkit from "../assets/previews/drumkit.png";
-import sessionClock from "../assets/previews/sessionClock.png";
-import quoteGenerator from "../assets/previews/quoteGenerator.png";
-import reactulator from "../assets/previews/reactulator.png";
-import wonderclock from "../assets/previews/wonderclock.png";
-import dmrForm from "../assets/previews/dmrForm.png";
-import Markdown from "../assets/previews/markdown-previewer.png";
-import vemReport from "../assets/previews/vemReport.png";
+// TODO: Update descriptions/refactor
 
-const projectsList = [
+import * as previews from "@assets/previews";
+import * as tech from "@assets/tech";
+
+export const PROJECTS_LIST = [
   {
     title: "The Dot Devs",
     linkTypes: ["Project Link", "Github Project Link"],
     projectURL: "https://www.thedotdevs.com",
     githubURL: "https://github.com/the-dot-devs/tdd-portfolio",
     previewAlt: "The Dot Devs Preview",
-    previewImg: tdd,
+    previewImg: previews.theDotDevs,
     description: "Company website for The Dot Devs",
-    tech: ["NextJS", "Tailwind"],
+    tech: [tech.nextjs, tech.tailwind],
   },
   {
     title: "XP Markdown Previewer",
@@ -25,10 +20,22 @@ const projectsList = [
     projectURL: "/projects/xp-markdown-previewer",
     githubURL: "https://github.com/dmrwebdev/xp-safe-space",
     previewAlt: "Markdown previewer styled after Windows XP",
-    previewImg: Markdown,
+    previewImg: previews.markdownPreviewer,
     description:
       "Another early React application, this started off as a Free Code Camp excercise developing a simple Markdown previewer. Nostalgia took over however once I found a Windows XP styled CSS library, and soon enough the app evolved into a simple but faithful recreation of the WinXP desktop.",
-    tech: ["React", "SCSS"],
+    tech: [tech.react, tech.sass],
+  },
+
+  {
+    title: "Reactulator",
+    linkTypes: ["Project Link", "Github Project Link"],
+    projectURL: "/projects/reactulator",
+    githubURL: "https://github.com/dmrdevops/reactulator",
+    previewAlt: "Reactulator Preview",
+    previewImg: previews.reactulator,
+    description:
+      "This one was challenging but a lot of fun- as one of my early React applications, it was originally completed using class components and later rebuilt using hooks after learning of them. Don't think I could ever go back!",
+    tech: [tech.react],
   },
   {
     title: "React Drum Kit",
@@ -36,32 +43,10 @@ const projectsList = [
     projectURL: "/projects/react-drum-kit",
     githubURL: "https://github.com/dmrdevops/react-drum-kit",
     previewAlt: "React Drum Kit Preview",
-    previewImg: drumkit,
+    previewImg: previews.drumKit,
     description:
       "My first React application! This project helped me learn the concept of state and component lifecycles, and opened a whole new window of opportunity for me when it came to app devlopment.",
-    tech: ["React", "SCSS"],
-  },
-  {
-    title: "25-5 Exercise Clock",
-    linkTypes: ["Project Link", "Github Project Link"],
-    projectURL: "/projects/25-5-clock",
-    githubURL: "https://github.com/dmrdevops/25-by-5-exercise-clock",
-    previewAlt: "25-5 Exercise Clock Preview",
-    previewImg: sessionClock,
-    description:
-      "A Free Code Camp exercise developing a session timer with React. Seemed easy enough until I found out about the intracacies of setTimeout and component lifecycles!",
-    tech: ["React", "CSS"],
-  },
-  {
-    title: "Reactulator",
-    linkTypes: ["Project Link", "Github Project Link"],
-    projectURL: "/projects/reactulator",
-    githubURL: "https://github.com/dmrdevops/reactulator",
-    previewAlt: "Reactulator Preview",
-    previewImg: reactulator,
-    description:
-      "This one was challenging but a lot of fun- as one of my early React applications, it was originally completed using class components and later rebuilt using hooks after learning of them. Don't think I could ever go back!",
-    tech: ["React", "CSS"],
+    tech: [tech.react, tech.sass],
   },
   {
     title: "Random Quote Machine",
@@ -69,10 +54,10 @@ const projectsList = [
     projectURL: "/projects/random-quote-machine",
     githubURL: "https://github.com/dmrdevops/random-quote-machine",
     previewAlt: "Random Quote Machine Preview",
-    previewImg: quoteGenerator,
+    previewImg: previews.quoteGenerator,
     description:
       "Another first attempt, this time into the world of CSS frameworks and data retrieval through an API. A very simple app, random quote generator taught me how to utilize fetch and event listeners to retrieve data through an API and dynamically update a webpage. It also helped me gain familiarity with Bootstrap and UI kits in general.",
-    tech: ["HTML", "Bootstrap", "JS"],
+    tech: [tech.javascript, tech.bootstrap],
   },
   {
     title: "Wonder Clock",
@@ -80,58 +65,33 @@ const projectsList = [
     projectURL: "/projects/wonder-clock",
     githubURL: "https://github.com/dmrdevops/wonder-clock",
     previewAlt: "Wonder Clock Preview",
-    previewImg: wonderclock,
+    previewImg: previews.wonderClock,
     description:
       "My first attempt at Javascript! This was inspired by a Wes Bos course were I learned how to create an animated analog clock. Aside from learning Javascript date and time manipulation, this was a key lesson in learning how to utilize CSS transformations in order to animate the clock hands.",
-    tech: ["HTML", "CSS", "JS"],
+    tech: [tech.javascript],
   },
-
   /*   {
-    title: "Super Awesome Program Manual",
-    linkTypes: ["Project Link", "Github Project Link"],
-    projectURL: "/projects/super-awesome-program-manual",
-    githubURL: "https://github.com/dmrdevops/super-awesome-program-manual",
-    previewAlt: "SAPM Preview",
-    previewURL:
-      "https://repository-images.githubusercontent.com/337932395/8f115f00-7ba6-11eb-9c3b-787eec23cdf4",
-    description:
-      "Technical support page for the fictional Super Awesome Program",
-    tech: ["HTML", "CSS"],
-  },
-  {
-    title: "Chris Cornell Tribute Page",
-    linkTypes: ["Project Link", "Github Project Link"],
-    projectURL: "/projects/cornell-tribute-page",
-    githubURL: "https://github.com/dmrdevops/dmr-survey-page",
-    previewAlt: "Chris Cornell Tribute Page Preview",
-    previewURL:
-      "https://repository-images.githubusercontent.com/337932894/dc8fcb00-7baa-11eb-8ff8-e5bd04c05be6",
-    description:
-      "Another one of my first websites, this page is dedicated to late rock artist Chris Cornell, ",
-    tech: ["HMTL", "CSS"],
-  }, */
-  {
     title: "DMR Survey Site",
     linkTypes: ["Project Link", "Github Project Link"],
     projectURL: "/projects/dmr-survey-page",
     githubURL: "https://github.com/dmrdevops/dmr-survey-page",
     previewAlt: "DMR Survey Site Preview",
-    previewImg: dmrForm,
+    previewImg: previews.dmrForm,
     description:
       "My very first webpage. A simple survey form created as a Free Code Camp exercise, this was my first forray into basic CSS and HTML. Ignore the option for CSS as a programming language, I've learned since then ;)",
     tech: ["HMTL", "CSS"],
-  },
+  }, */
   {
     title: "VEM Work Report",
     linkTypes: ["Project Link"],
     projectURL: "/vemReport.xlsm",
     githubURL: "#",
     previewAlt: "VEM Work Report Preview",
-    previewImg: vemReport,
+    previewImg: previews.vemReport,
     description:
       "The Excel sheet that started it all. My absolute first venture into developing, I was tasked with replacing our paper report with an electronic version. Utilizing macros and VBA, I was amazed at how much excel can actually do natively- By the end this report was able to conditionally render and alert users of missing data, generate a printable copy, link it up to our job tracking system (from another vendor none the less), and more. Looking back I kick myself- oh how much easier this would have been with some html and javascript.",
-    tech: ["Excel"],
+    // tech: [
+    //   /* "Excel" */
+    // ],
   },
 ];
-
-export default projectsList;

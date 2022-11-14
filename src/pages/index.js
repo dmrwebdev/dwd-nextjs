@@ -2,34 +2,27 @@ import Head from "next/head";
 import { Navbar } from "@components";
 import { useWindowEffectsContext } from "@context/WindowEffectsContext";
 import { useMediaQuery } from "@hooks";
-import { DecorativeTitleBar, Terminal, TerminalShell } from "@components";
+import { Terminal, TerminalShell } from "@components";
 import { Welcome, Technologies, Projects, AboutMe, Certificates } from "@views";
-import { mdMediaQuery } from "@data";
+import { mdMediaQuery } from "@pages/app_constants";
 
-export default function DWD({ prevScrollPos }) {
+export default function DWD() {
   const { terminalAnimStart, terminalAnimOver } = useWindowEffectsContext();
 
-  const [isBreakPoint] = useMediaQuery(mdMediaQuery);
-
+  const [mdViewport] = useMediaQuery(mdMediaQuery);
   const mobileLayout = (
     <>
       <div className={`overflow-hidden relative flex flex-col justify-center items-center`}>
         <AboutMe />
         <Projects />
         <Technologies />
-
         <Certificates />
       </div>
     </>
   );
 
-  const desktopLayout = (
-    <Terminal terminalAnimStart={terminalAnimStart} terminalAnimOver={terminalAnimOver}>
-      <div className="grow overflow-auto">
-        <TerminalShell />
-      </div>
-    </Terminal>
-  );
+  const content = () =>
+    mdViewport ? <Terminal terminalAnimStart={terminalAnimStart} terminalAnimOver={terminalAnimOver} /> : mobileLayout;
 
   return (
     <>
@@ -49,8 +42,10 @@ export default function DWD({ prevScrollPos }) {
       <Navbar />
       <main className={"min-h-screen"}>
         <Welcome />
-        {!isBreakPoint ? mobileLayout : desktopLayout}
+        {mdViewport !== null && content()}
       </main>
     </>
   );
 }
+
+// TODO: Figure out anchor link jumping when manually entering
