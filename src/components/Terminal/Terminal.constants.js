@@ -29,9 +29,13 @@ Last login: Fri Jan 14 06:50:12 2022 from 70.100.60.100
 
 export const TERMINAL_HOME_TEXT = `Hello and welcome to my portfolio!
     
-    As you may have figured out already, my names Derek and I'm a full stack engineer living life in the bustling SF Bay area. Originally an Electric Motor Mechanic for over a decade but always a nerd at heart, I found my true passion in coding a little over a year ago and haven't been able to look back! 
+    As you may have figured out already, my names Derek and I'm a full stack engineer from the SF Bay area. \
+    Originally an Electric Motor Mechanic for over a decade but always a nerd at heart, I found my real \
+    passion in coding a couple years ago and haven't looked back! 
     
-    With this iteration of my portfolio, I decided to have fun a little fun and recreate the terminal I use everyday. Feel free to find out more about me and my projects by navigating using terminal commands or the tabs at the top of the terminal window!
+    With this iteration of my portfolio, I decided to have fun a little fun and recreate the terminal I use \
+    everyday. Feel free to find out more about me and my projects by navigating using terminal commands or \
+    the tabs at the top of the terminal window!
 
     Commands:
     
@@ -39,7 +43,7 @@ export const TERMINAL_HOME_TEXT = `Hello and welcome to my portfolio!
     * projects: View some of my projects
     * tech: See the Technology I use and the certificates I've achieved!
     * help: See all available commands
-    * home: Go back to this screen
+    * home: Go back to the welcome screen
     
 
   

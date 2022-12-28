@@ -2,10 +2,10 @@ import { useState, useEffect, useRef } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
-import { smMediaQuery } from "@pages/app_constants";
+import { smMediaQuery } from "@app_constants";
 import { useWindowEffectsContext } from "@context/WindowEffectsContext";
 import { useDebounce, useMediaQuery, useWindowScrollPos } from "@hooks";
-import { APP_SECTIONS } from "@pages/app_constants";
+import { APP_SECTIONS } from "@app_constants";
 import NavLink from "./NavLink";
 
 export default function Navbar() {

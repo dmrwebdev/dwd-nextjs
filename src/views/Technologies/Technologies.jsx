@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useMediaQuery } from "@hooks";
-import { APP_SECTIONS, mdMediaQuery } from "@pages/app_constants";
+import { APP_SECTIONS, mdMediaQuery } from "@app_constants";
 import { TerminalLocationLine, TerminalSectionHeading, TerminalTitleBar } from "@components";
 import { TECH_LIST } from "./Technologies.constants";
 import Certificates from "@views/Certificates";

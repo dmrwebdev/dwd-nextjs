@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { smMediaQuery, mdMediaQuery, APP_SECTIONS } from "@pages/app_constants";
+import { smMediaQuery, mdMediaQuery, APP_SECTIONS } from "@app_constants";
 import { useMediaQuery } from "@hooks";
 import { TerminalLocationLine, TerminalTitleBar } from "@components";
 import ProjectCard from "./ProjectCard";

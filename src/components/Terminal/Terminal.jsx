@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import { useWindowEffectsContext } from "@context/WindowEffectsContext";
 import { useIntersect } from "@hooks";
-import { APP_SECTIONS } from "@pages/app_constants";
+import { APP_SECTIONS } from "@app_constants";
 import { TerminalTitleBar, TerminalIntro, TerminalCommandLine } from "./index";
 
 export default function Terminal({ className, customLocation }) {
@@ -50,8 +50,10 @@ export default function Terminal({ className, customLocation }) {
     );
   } */
 
-  const content =
-    router.asPath === "/" && terminalAnimStart && !terminalAnimOver ? (
+  const content = () => {
+    if (router.asPath === "/" && !terminalAnimStart && !terminalAnimOver) return null;
+
+    return router.asPath === "/" && terminalAnimStart && !terminalAnimOver ? (
       <TerminalIntro />
     ) : (
       <>
@@ -63,6 +65,7 @@ export default function Terminal({ className, customLocation }) {
         />
       </>
     );
+  };
 
   return (
     <div
@@ -74,9 +77,31 @@ export default function Terminal({ className, customLocation }) {
       <div className="bg-terminal-black grow whitespace-pre-line leading-relaxed overflow-auto relative">
         <div className="*min-h-full *w-full *flex *flex-col max-w-[1200px] mx-auto p-4">
           {/* Main content */}
-          {content}
+          {content()}
         </div>
       </div>
     </div>
   );
 }
+
+// `
+//                .-/+oossssoo+/-.               Windows 10 Linux Subsystem
+//            `:+ssssssssssssssssss+:`           derek@DACHINE
+//          -+ssssssssssssssssssyyssss+-         BUILD:    22000
+//        .ossssssssssssssssssdMMMNysssso.       BRANCH:   co_release
+//       /ssssssssssshdmmNNmmyNMMMMhssssss/      RELEASE:  Ubuntu 20.04.5 LTS
+//      +ssssssssshmydMMMMMMMNddddyssssssss+     KERNEL:   Linux 5.10.16.3-microsoft-standard-WSL2
+//     /sssssssshNMMMyhhyyyyhmNMMMNhssssssss/    UPTIME:   0d 0h 14m
+//    .ssssssssdMMMNhsssssssssshNMMMdssssssss.
+//    +sssshhhyNMMNyssssssssssssyNMMMysssssss+
+//    ossyNMMMNyMMhsssssssssssssshmmmhssssssso
+//    ossyNMMMNyMMhsssssssssssssshmmmhssssssso
+//    +sssshhhyNMMNyssssssssssssyNMMMysssssss+
+//    .ssssssssdMMMNhsssssssssshNMMMdssssssss.
+//     /sssssssshNMMMyhhyyyyhdNMMMNhssssssss/
+//      +sssssssssdmydMMMMMMMMddddyssssssss+
+//       /ssssssssssshdmNNNNmyNMMMMhssssss/
+//        .ossssssssssssssssssdMMMNysssso.
+//          -+sssssssssssssssssyyyssss+-
+//            `:+ssssssssssssssssss+:`
+//                .-/+oossssoo+/-.`

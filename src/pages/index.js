@@ -4,7 +4,7 @@ import { useWindowEffectsContext } from "@context/WindowEffectsContext";
 import { useMediaQuery } from "@hooks";
 import { Terminal, TerminalShell } from "@components";
 import { Welcome, Technologies, Projects, AboutMe, Certificates } from "@views";
-import { mdMediaQuery } from "@pages/app_constants";
+import { mdMediaQuery } from "@app_constants";
 
 export default function DWD() {
   const { terminalAnimStart, terminalAnimOver } = useWindowEffectsContext();

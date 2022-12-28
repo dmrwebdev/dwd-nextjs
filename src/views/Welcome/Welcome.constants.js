@@ -5,5 +5,5 @@ export const INTRO_WORD_LIST = [
   "full stack developer",
   "fisherman",
   "nerd",
-  "coffee enthusiast",
+  "Craft Beer Enthusiast",
 ];

@@ -16,8 +16,9 @@ export default function TerminalCommandLine({ directories, currentDirectory, han
   }, [currentDirectory]); */
 
   function handleCommand() {
+    console.log(directories.has(`/#${currentCommand}`));
     // If cd command change directories
-    if (/cd.*/.test(currentCommand)) {
+    if (/cd.*/.test(currentCommand) || directories.has(`/#${currentCommand}`)) {
       changeDirectory(currentCommand);
     } else {
       switch (currentCommand) {
@@ -48,7 +49,7 @@ export default function TerminalCommandLine({ directories, currentDirectory, han
 
       const matchingDirectory = (() => {
         for (const key of directories.keys()) {
-          // TODO: This is in flexible
+          // TODO: This is inflexible
           if (key.includes(pathname)) return directories.get(key);
         }
       })();
@@ -125,7 +126,7 @@ export default function TerminalCommandLine({ directories, currentDirectory, han
     <div className=" w-full max-w-[1600px] mx-auto ">
       <div className="mt-8">{pastCommands}</div>
       <div
-        className="relative py-8 px-6 w-full  mx-auto"
+        className="relative py-8 w-full  mx-auto"
         onClick={() => currentDirectory === "home" && textAreaRef.current.focus()}
       >
         <div className="absolute" ref={locationRef}>

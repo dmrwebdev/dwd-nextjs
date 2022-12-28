@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { exit, maximize, minimize, linux, plus } from "@assets";
-import { APP_SECTIONS } from "@pages/app_constants";
+import { APP_SECTIONS } from "@app_constants";
 import { useRouter } from "next/router";
 import variables from "@styles/variables.module.scss";
 

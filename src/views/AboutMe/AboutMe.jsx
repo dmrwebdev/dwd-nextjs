@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useWindowEffectsContext } from "@context/WindowEffectsContext";
 import { ContactBar, TerminalLocationLine, TerminalTitleBar } from "@components";
 import { useMediaQuery, useIntersect } from "@hooks";
-import { APP_SECTIONS, mdMediaQuery } from "@pages/app_constants";
+import { APP_SECTIONS, mdMediaQuery } from "@app_constants";
 import { binary, pixelMe } from "@assets";
 import { styles, ABOUT_ME_TEXT, SHORTENED_ABOUT_ME_TEXT } from "./index";
 
