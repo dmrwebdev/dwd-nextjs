@@ -1,40 +1,3 @@
-# name: Build and Deploy to Server
-
-# on:
-#   push:
-#     branches: [main]
-#   workflow_dispatch:
-
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checking out
-#         uses: actions/checkout@v2
-#       - name: Setting up node
-#         uses: actions/setup-node@v2
-#         with:
-#           node-version: 16
-
-#       - name: Installing yarn
-#         run: npm install -g yarn
-
-#       - name: Installing dependencies from lockfile
-#         run: yarn install --frozen-lockfile
-
-#       - name: Building app
-#         run: yarn build
-
-#       - name: Rsync to server
-#         uses: Burnett01/rsync-deployments@5.2
-#         with:
-#           switches: -avzr --delete
-#           path: ./
-#           remote_path: ${{ secrets.REMOTE_DIR }}
-#           remote_host: ${{ secrets.REMOTE_HOST }}
-#           remote_user: ${{ secrets.REMOTE_USER }}
-#           remote_key: ${{ secrets.SSH_KEY }}
-
 name: deploy
 on:
   workflow_dispatch:
@@ -82,4 +45,5 @@ jobs:
             docker run -d \
             --restart always \
             --name $(echo $IMAGE_NAME) \
+            -p 3000:3000 \
             ghcr.io/dmrwebdev/$(echo $IMAGE_NAME):latest
