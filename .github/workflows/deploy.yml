@@ -35,12 +35,15 @@
 #           remote_user: ${{ secrets.REMOTE_USER }}
 #           remote_key: ${{ secrets.SSH_KEY }}
 
-name: push-to-gh-docker
+name: deploy
 on:
   workflow_dispatch:
 
+env:
+  IMAGE_NAME: "dwd"
+
 jobs:
-  publish:
+  build_and_publish:
     runs-on: ubuntu-latest
     steps:
       - name: Login to GitHub Container Registry
@@ -52,7 +55,31 @@ jobs:
 
       - uses: actions/checkout@v3
       - name: Build image
-        run: docker build -t ghcr.io/${{ github.actor }}/dwd:latest .
+        run: docker build -t ghcr.io/${{ github.actor }}/$IMAGE_NAME:latest .
 
       - name: Push the image
-        run: docker push ghcr.io/${{ github.actor }}/dwd:latest
+        run: docker push ghcr.io/${{ github.actor }}/$IMAGE_NAME:latest
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build_and_publish
+    steps:
+      - name: Deploy to Digital Ocean droplet via SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          envs: IMAGE_NAME,REGISTRY,GITHUB_SHA,{{ github.actor }}
+          script: |
+            # Pull latest image
+            docker pull ghcr.io/dmrwebdev/$IMAGE_NAME:latest
+            # Stop running container
+            docker stop $(echo $IMAGE_NAME)
+            # Remove old container
+            docker rm $(echo $IMAGE_NAME)
+            # Run a new container from a new image
+            docker run -d \
+            --restart always \
+            --name $(echo $IMAGE_NAME) \
+            ghcr.io/dmrwebdev/$(echo $IMAGE_NAME):latest
